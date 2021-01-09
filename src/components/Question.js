@@ -3,7 +3,7 @@ import Option from './Option';
 import { useDispatch } from 'react-redux';
 import { addResponse } from '../actions/rootActions';
 
-const Question = ({ id, name, options }) => {
+const Question = ({ id, name, options, setQuestionIndex }) => {
   const dispatch = useDispatch();
   
   return (
@@ -18,6 +18,7 @@ const Question = ({ id, name, options }) => {
               ques_id: id,
               submitted_option
             }));
+            setQuestionIndex();
           }}
         />
       ))}

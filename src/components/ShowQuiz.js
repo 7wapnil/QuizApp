@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import QuizHeader from './QuizHeader';
 import Question from './Question';
 import Results from './Results';
 
 const ShowQuiz = () => {
+  const [questionIndex, setQuestionIndex] = useState(0);
 
-  const questions = {
+  const quiz_data = {
     "name": "Basic GK Quiz",
     "description": "This quiz will help to polish your unawareness about General Knowledge.",
     "questions": [
@@ -49,9 +50,15 @@ const ShowQuiz = () => {
 
   return (
     <div>
-      <QuizHeader title={questions.name}/>
-      <Question {...questions.questions[0]}/>
-      { false && <Results /> }
+      <QuizHeader title={quiz_data.name} />
+      {
+        (quiz_data.questions.length > questionIndex) ? (
+          <Question
+            {...quiz_data.questions[questionIndex]}
+            setQuestionIndex={() => setQuestionIndex(questionIndex + 1)}
+          />
+        ) : <Results />
+      }
     </div>
   );
 };

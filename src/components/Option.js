@@ -1,10 +1,11 @@
 import React from 'react';
 
-const Option = ({option, addResponse}) => (
+const Option = ({ option, addResponse }) => (
   <div>
     <input
       type="radio"
       name="option"
+      checked={false}
       value={option}
       onChange={() => addResponse(option)}
     />
