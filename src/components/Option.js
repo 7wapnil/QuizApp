@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Option = ({option}) => (
+const Option = ({option, addResponse}) => (
   <div>
     <input
       type="radio"
       name="option"
       value={option}
-      onChange={() => console.log('Clicked......')}
+      onChange={() => addResponse(option)}
     />
     <label>{option}</label>
   </div>
