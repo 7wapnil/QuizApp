@@ -1,5 +1,6 @@
 import React from 'react';
 import Quiz from './Quiz';
+import axios from 'axios';
 
 const Quizzes = () => {
   const quizzes =  [
