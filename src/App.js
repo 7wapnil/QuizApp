@@ -1,10 +1,9 @@
 import React from 'react';
 import AppRouter from './routers/AppRouter';
-import { createStore } from 'redux';
-import rootReducer from './reducers/rootReducer';
 import { Provider } from 'react-redux';
+import configureStore from './store/configureStore';
 
-const store = createStore(rootReducer);
+const store = configureStore();
 
 console.log(store.getState());
 store.subscribe(() => console.log(store.getState()));

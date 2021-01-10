@@ -5,7 +5,6 @@ const QuizHeader = ({ title }) => {
     <div>
       <h1>{title}</h1>
       <p>--------Progress bar-------------</p>
-      <div className="time-bar"><p>Time Remainning: 0:07/0:015 Seconds</p></div>
     </div>
   );
 };
