@@ -30,7 +30,7 @@ const QuizTimer = ({ questionId, setQuestionIndex }) => {
     const minutes = parseInt(seconds / 60);
     seconds = seconds % 60;
 
-    return `${minutes}:${seconds}`;
+    return `${minutes}:${('0' + seconds).slice(-2)}`;
   }
 
   return (
