@@ -1,63 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import QuizHeader from './QuizHeader';
 import Question from './Question';
 import Results from './Results';
+import axios from 'axios';
+import { API_BASE_URL, API_HEADERS } from '../lib/constants';
 
-const ShowQuiz = () => {
+const ShowQuiz = (props) => {
   const [questionIndex, setQuestionIndex] = useState(0);
+  const [quizData, setQuizData] = useState('');
+  const quiz_id = props.match.params.id;
 
-  const quiz_data = {
-    "name": "Basic GK Quiz",
-    "description": "This quiz will help to polish your unawareness about General Knowledge.",
-    "questions": [
-      {
-        "id": 1,
-        "name": "Which crop is sown on the largest area in India?",
-        "options": "Rice,Wheat,Sugarcane,Maize",
-        "quiz": 1,
-        "points": 1
-      },
-      {
-        "id": 2,
-        "name": "Corey Anderson who has hit the fastest ODI century in 36 balls is from?",
-        "options": "England,Australia,WI,NZ",
-        "quiz": 1,
-        "points": 1
-      },
-      {
-        "id": 3,
-        "name": "The world smallest country is?",
-        "options": "Italy,Canada,Vatican City,Russia",
-        "quiz": 1,
-        "points": 1
-      },
-      {
-        "id": 4,
-        "name": "Novak Djokovic is a famous player associated with the game of?",
-        "options": "Hockey,Football,Chess,Lawn Tennis",
-        "quiz": 1,
-        "points": 1
-      },
-      {
-        "id": 5,
-        "name": "Which country below is not one of the members of the UN security council?",
-        "options": "Germany,China,Russia,France",
-        "quiz": 1,
-        "points": 1
-      }
-    ]
-  }
+  useEffect(() => {
+    const questionURL = `${API_BASE_URL}/api/quiz-questions/all/${quiz_id}`;
+    const getQuestion = async () => {
+      const { data } = await axios(questionURL, {
+        headers: API_HEADERS
+      });
+      setQuizData(data);
+    };
+    getQuestion();
+  }, [quiz_id]);
 
   return (
     <div>
-      <QuizHeader title={quiz_data.name} />
+      <QuizHeader title={quizData.name} />
       {
-        (quiz_data.questions.length > questionIndex) ? (
-          <Question
-            {...quiz_data.questions[questionIndex]}
-            setQuestionIndex={() => setQuestionIndex(questionIndex + 1)}
-          />
-        ) : <Results />
+        quizData && (
+          (quizData.questions.length > questionIndex) ? (
+            <Question
+              {...quizData.questions[questionIndex]}
+              setQuestionIndex={() => setQuestionIndex(questionIndex + 1)}
+            />
+          ) : (
+            <Results
+              questions={quizData.questions}
+              quiz_id={quiz_id}
+            />
+          )
+        )
       }
     </div>
   );

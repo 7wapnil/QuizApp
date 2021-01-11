@@ -1,25 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Quiz from './Quiz';
 import axios from 'axios';
+import { API_BASE_URL, API_HEADERS } from '../lib/constants';
 
 const Quizzes = () => {
-  const quizzes =  [
-    {
-      "id": 1,
-      "name": "Basic GK Quiz",
-      "description": "This quiz will help to polish your unawareness about General Knowledge."
-    },
-    {
-      "id": 2,
-      "name": "Sports Quiz",
-      "description": "The Sports Quiz consists of different questions from countries and national games and also Olympic games."
-    },
-    {
-      "id": 3,
-      "name": "Indian Geography",
-      "description": "Indian Geography Online Test contains various questions that are useful for every candidate to face multiple competitive exams."
-    }
-  ]
+  const [quizzes, setQuizzes] = useState([]);
+
+  useEffect(() => {
+    const getQuizList = async () => {
+      const { data } = await axios.get(`${API_BASE_URL}/api/quiz/all`, {
+        headers: API_HEADERS
+      });
+      setQuizzes(data);
+    };
+    getQuizList();
+  }, []);
 
   return (
     <div>
