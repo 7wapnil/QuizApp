@@ -13,20 +13,31 @@ const Question = ({ id, name, options, setQuestionIndex }) => {
         questionId={id}
         setQuestionIndex={() => setQuestionIndex()}
       />
-      <div className="question"><h2>{name}</h2></div>
-      {options.split(',').map((option, index) => (
-        <Option
-          key={index}
-          option={option}
-          addResponse={(submitted_option) => {
-            dispatch(addResponse({
-              ques_id: id,
-              submitted_option
-            }));
-            setQuestionIndex();
-          }}
-        />
-      ))}
+      <div className="question-div">
+        <div className="question">
+          <h2>{name}</h2>
+        </div>
+        <div className="ui segments">
+          <div className="ui form">
+            <div className="grouped fields">
+              {options.split(',').map((option, index) => (
+                <Option
+                  id={index+1}
+                  key={index}
+                  option={option}
+                  addResponse={(submitted_option) => {
+                    dispatch(addResponse({
+                      ques_id: id,
+                      submitted_option
+                    }));
+                    setQuestionIndex();
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -5,9 +5,6 @@ import configureStore from './store/configureStore';
 
 const store = configureStore();
 
-console.log(store.getState());
-store.subscribe(() => console.log(store.getState()));
-
 function App() {
   return (
     <Provider store={store}>

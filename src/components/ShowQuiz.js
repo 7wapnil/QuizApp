@@ -4,6 +4,7 @@ import Question from './Question';
 import Results from './Results';
 import axios from 'axios';
 import { API_BASE_URL, API_HEADERS } from '../lib/constants';
+import QuizProgress from './QuizProgress';
 
 const ShowQuiz = (props) => {
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -27,16 +28,26 @@ const ShowQuiz = (props) => {
       {
         quizData && (
           (quizData.questions.length > questionIndex) ? (
-            <Question
-              {...quizData.questions[questionIndex]}
-              setQuestionIndex={() => setQuestionIndex(questionIndex + 1)}
-            />
+            <div>
+              <QuizProgress
+                quiz_count={quizData.questions.length}
+                current_question={questionIndex}
+              />
+              <div className="question-container">
+                <Question
+                  {...quizData.questions[questionIndex]}
+                  setQuestionIndex={() => setQuestionIndex(questionIndex + 1)}
+                />
+              </div>
+            </div>
           ) : (
-            <Results
-              questions={quizData.questions}
-              quiz_id={quiz_id}
-            />
-          )
+              <div className="question-container">
+                <Results
+                  questions={quizData.questions}
+                  quiz_id={quiz_id}
+                />
+              </div>
+            )
         )
       }
     </div>

@@ -29,15 +29,19 @@ const Results = ({ questions, quiz_id }) => {
 
   return (
     <div>
-      <h1 className="score">Your score is: {results.score}</h1>
-      <h2>Answers</h2>
-      { results && results.questions.map((question) => (
-        <Result
-          {...question}
-          key={question.ques_id}
-          getQuestionName={getQuestionName}
-        />
-      ))}
+      <div className="ui center aligned header">
+        <h1 className="score">Your score is: {results.score}</h1>
+      </div>
+      <div className="ui segments">
+        <h2 className="ui top attached header">Answers</h2>
+        {results && results.questions.map((question) => (
+          <Result
+            {...question}
+            key={question.ques_id}
+            getQuestionName={getQuestionName}
+          />
+        ))}
+      </div>
     </div>
   );
 };

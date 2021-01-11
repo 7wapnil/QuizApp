@@ -1,0 +1,25 @@
+.quizzes-container {
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.custom-quizzes-header {
+  margin-top: 5rem !important;
+}
+
+.radio-option {
+  margin-right: 10px;
+}
+
+.option-field {
+  cursor: pointer;
+}
+
+.question-container {
+  max-width: 50rem;
+  margin: 0 auto;
+
+  .question-div {
+    margin-top: 4rem;
+  }
+}

@@ -2,9 +2,8 @@ import React from 'react';
 
 const QuizHeader = ({ title }) => {
   return (
-    <div>
+    <div className="ui inverted block center aligned header">
       <h1>{title}</h1>
-      <p>--------Progress bar-------------</p>
     </div>
   );
 };
