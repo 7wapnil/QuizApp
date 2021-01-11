@@ -34,9 +34,10 @@ const Results = ({ questions, quiz_id }) => {
       </div>
       <div className="ui segments">
         <h2 className="ui top attached header">Answers</h2>
-        {results && results.questions.map((question) => (
+        {results && results.questions.map((question, index) => (
           <Result
             {...question}
+            res_id={index+1}
             key={question.ques_id}
             getQuestionName={getQuestionName}
           />

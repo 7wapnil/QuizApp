@@ -35,7 +35,7 @@ const QuizTimer = ({ questionId, setQuestionIndex }) => {
 
   return (
     <div className="time-bar">
-      Time Remaining: {msToMMSS(timer)}/0:15 Seconds
+      Time Remaining: {msToMMSS(timer)}/0:15 seconds
     </div>
   );
 };
